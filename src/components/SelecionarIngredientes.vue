@@ -1,6 +1,7 @@
 <script lang="ts">
 import { obterCategorias } from '@/http/index';
 import type ICategoria from "@/interfaces/ICategoria";
+import CardCategoria from "./CardCategoria.vue"
 
 
 export default {
@@ -13,7 +14,8 @@ export default {
     //metodo para pegar equisições assincronas
     async created() {
         this.categorias = await obterCategorias();
-    }
+    },
+    components: { CardCategoria }
 }
 </script>
 
@@ -30,7 +32,12 @@ export default {
 
         <ul class="categorias">
             <li v-for="categoria in categorias" :key="categoria.nome">
-                {{ categoria.nome }}
+
+                <!-- passando a variavel categoria para prop :categoria -->
+                <CardCategoria  :categoria="categoria"/>
+
+
+
             </li>
         </ul>
         <p class="paragrafo dica">
