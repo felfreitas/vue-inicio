@@ -25,7 +25,9 @@ export default {
 
             <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
                 <li v-for="ingrediente in ingredientes" :key="ingrediente" >
-                    <Tag :texto="ingrediente" />
+                    <!-- <Tag :texto="ingrediente" :ativa="true" /> -->
+                    <!-- podemos deixar apenas o nome da props ativa sozinha que por ser boleeano ela ja fica entendida como true -->
+                    <Tag :texto="ingrediente" ativa />
                 </li>
 
             </ul>
