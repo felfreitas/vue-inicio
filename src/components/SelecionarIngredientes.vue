@@ -2,11 +2,12 @@
 import { obterCategorias } from '../http/index';
 import type ICategoria from "../interfaces/ICategoria";
 import CardCategoria from "./CardCategoria.vue"
+import BotaoPrincipal from "./BotaoPrincipal.vue"
 
 
 export default {
-    components: { CardCategoria },
-   
+    components: { CardCategoria, BotaoPrincipal },
+
     //qlq propriedade dentro de data podemos chamar de 'estado' pois data é reativo. Ex.: assim que a promisse no created acontece, automaticamente atribui valores a categorias
     data() {
         return {
@@ -17,7 +18,8 @@ export default {
     async created() {
         this.categorias = await obterCategorias();
     },
-    emits:['adicionarIngrediente','removerIngrediente']
+    
+    emits: ['adicionarIngrediente', 'removerIngrediente','buscarReceitas']
 }
 </script>
 
@@ -36,19 +38,20 @@ export default {
             <li v-for="categoria in categorias" :key="categoria.nome">
 
                 <!-- passando a variavel categoria para prop :categoria -->
-                <CardCategoria  
-                :categoria="categoria"
-                @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
-                
-                @remover-ingrediente="$emit('removerIngrediente', $event)"
-                />
+                <CardCategoria :categoria="categoria" @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+                    @remover-ingrediente="$emit('removerIngrediente', $event)" />
+
 
             </li>
         </ul>
 
-       <p class="paragrafo dica">
+        <p class="paragrafo dica">
             *Atenção: consideramos que você tem em casa sal, pimenta e água.
         </p>
+
+        <BotaoPrincipal texto="Buscar receitas!" @click= "$emit('buscarReceitas')" />
+      
+
     </section>
 </template>
 

@@ -1,17 +1,17 @@
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
-import BotaoPrincipal from './BotaoPrincipal.vue';
 import MostrarReceitas from './MostrarReceitas.vue';
 
 type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 export default {
-    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal, MostrarReceitas },
+    components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
     data() {
         return {
             ingredientes: [] as string[],
-            conteudo:'SelecionarIngredientes' as Pagina
+            conteudo: 'SelecionarIngredientes' as Pagina,
+            receitas: "Olá mundo"
         }
     },
     methods: {
@@ -20,6 +20,9 @@ export default {
         },
         removerIngrediente(ingredienteParaRemover: string) {
             this.ingredientes = this.ingredientes.filter(iLista => ingredienteParaRemover !== iLista);
+        },
+        navegar(pagina:Pagina){
+            this.conteudo= pagina;
         }
     }
 }
@@ -33,12 +36,15 @@ export default {
 
         <SuaLista :ingredientes="ingredientes" />
 
-        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'" @adicionar-ingrediente="adicionarIngrediente($event)"
-            @remover-ingrediente="removerIngrediente($event)" />
+        <SelecionarIngredientes
+         v-if="conteudo === 'SelecionarIngredientes'"
+            @adicionar-ingrediente="adicionarIngrediente($event)" 
+            @remover-ingrediente="removerIngrediente($event)"
+            @buscar-receitas="navegar('MostrarReceitas')" 
+            />
 
-        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
+        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" :receitas='receitas'  @buscar-receitas="navegar('SelecionarIngredientes')"   />
 
-        <BotaoPrincipal texto="Buscar receitas!" />
 
     </main>
 
