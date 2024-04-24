@@ -6,6 +6,8 @@
         </footer>
     </div>
 </template>
+
+
 <style scoped>
 .rodape {
   background: var(--verde-escuro, #263A29);

@@ -2,12 +2,16 @@
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
 import BotaoPrincipal from './BotaoPrincipal.vue';
+import MostrarReceitas from './MostrarReceitas.vue';
+
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 export default {
-    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal },
+    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal, MostrarReceitas },
     data() {
         return {
-            ingredientes: [] as string[]
+            ingredientes: [] as string[],
+            conteudo:'SelecionarIngredientes' as Pagina
         }
     },
     methods: {
@@ -18,8 +22,6 @@ export default {
             this.ingredientes = this.ingredientes.filter(iLista => ingredienteParaRemover !== iLista);
         }
     }
-
-
 }
 
 </script>
@@ -31,11 +33,11 @@ export default {
 
         <SuaLista :ingredientes="ingredientes" />
 
-        <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)"
+        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'" @adicionar-ingrediente="adicionarIngrediente($event)"
             @remover-ingrediente="removerIngrediente($event)" />
 
+        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
 
-       
         <BotaoPrincipal texto="Buscar receitas!" />
 
     </main>
