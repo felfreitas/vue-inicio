@@ -16,7 +16,8 @@ export default {
     //metodo para pegar requisições assincronas
     async created() {
         this.categorias = await obterCategorias();
-    }
+    },
+    emits:['adicionarIngrediente','removerIngrediente']
 }
 </script>
 
@@ -35,7 +36,12 @@ export default {
             <li v-for="categoria in categorias" :key="categoria.nome">
 
                 <!-- passando a variavel categoria para prop :categoria -->
-                <CardCategoria  :categoria="categoria"/>
+                <CardCategoria  
+                :categoria="categoria"
+                @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+                
+                @remover-ingrediente="$emit('removerIngrediente', $event)"
+                />
 
             </li>
         </ul>

@@ -6,7 +6,22 @@ export default {
     components: { SelecionarIngredientes, SuaLista },
     data() {
         return {
-            ingredientes: ['Alho', 'Manteiga', 'Orégano', 'Sal']
+            ingredientes: [] as string[]
+        }
+    },
+    methods: {
+        adicionarIngrediente(ingredienteParaAdicionar: string) {
+            alert(ingredienteParaAdicionar)
+            this.ingredientes.push(ingredienteParaAdicionar)
+        },
+        removerIngrediente(ingredienteParaRemover: string) {
+            var buscar = ingredienteParaRemover;
+            var indice = this.ingredientes.indexOf(buscar);
+            while (indice >= 0) {
+                this.ingredientes.splice(indice, 1);
+                indice = this.ingredientes.indexOf(buscar);
+            }
+            
         }
     }
 
@@ -22,7 +37,8 @@ export default {
 
         <SuaLista :ingredientes="ingredientes" />
 
-        <SelecionarIngredientes />
+        <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)"
+            @remover-ingrediente="removerIngrediente($event)" />
 
     </main>
 </template>
