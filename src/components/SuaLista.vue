@@ -1,15 +1,15 @@
 <script lang="ts">
 
-import type {ProtoType} from 'vue';
+import type { PropType } from 'vue';
 import Tag from './Tag.vue';
 
 export default {
     components: { Tag },
     props: {
-        ingredientes: {type:Array as PropType<string[]> , required: true }
+        ingredientes: { type: Array as PropType<string[]>, required: true }
     }
-    
-   
+
+
 }
 </script>
 <template>

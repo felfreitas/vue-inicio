@@ -1,21 +1,22 @@
 <script lang="ts">
-import { obterCategorias } from '@/http/index';
-import type ICategoria from "@/interfaces/ICategoria";
+import { obterCategorias } from '../http/index';
+import type ICategoria from "../interfaces/ICategoria";
 import CardCategoria from "./CardCategoria.vue"
 
 
 export default {
+    components: { CardCategoria },
+   
     //qlq propriedade dentro de data podemos chamar de 'estado' pois data é reativo. Ex.: assim que a promisse no created acontece, automaticamente atribui valores a categorias
     data() {
         return {
             categorias: [] as ICategoria[]
         }
     },
-    //metodo para pegar equisições assincronas
+    //metodo para pegar requisições assincronas
     async created() {
         this.categorias = await obterCategorias();
-    },
-    components: { CardCategoria }
+    }
 }
 </script>
 
@@ -35,8 +36,6 @@ export default {
 
                 <!-- passando a variavel categoria para prop :categoria -->
                 <CardCategoria  :categoria="categoria"/>
-
-
 
             </li>
         </ul>

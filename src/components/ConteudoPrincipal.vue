@@ -10,7 +10,7 @@ export default {
         }
     }
 
-   
+
 }
 
 </script>
@@ -19,10 +19,10 @@ export default {
 
 <template>
     <main class="conteudo-principal">
-     
-        <SuaLista :ingredientes="ingredientes" />
-        <SelecionarIngredientes />
 
+        <SuaLista :ingredientes="ingredientes" />
+
+        <SelecionarIngredientes />
 
     </main>
 </template>
