@@ -45,9 +45,9 @@ export default {
 
             </li>
         </ul>
-        <p class="paragrafo dica">
-            *Atenção: consideramos que você tem em casa sal, pimenta e água.
 
+       <p class="paragrafo dica">
+            *Atenção: consideramos que você tem em casa sal, pimenta e água.
         </p>
     </section>
 </template>

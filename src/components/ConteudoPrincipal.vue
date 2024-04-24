@@ -1,9 +1,10 @@
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
+import BotaoPrincipal from './BotaoPrincipal.vue';
 
 export default {
-    components: { SelecionarIngredientes, SuaLista },
+    components: { SelecionarIngredientes, SuaLista, BotaoPrincipal },
     data() {
         return {
             ingredientes: [] as string[]
@@ -33,10 +34,12 @@ export default {
         <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)"
             @remover-ingrediente="removerIngrediente($event)" />
 
-    </main>
-    <footer>
 
-    </footer>
+       
+        <BotaoPrincipal texto="Buscar receitas!" />
+
+    </main>
+
 </template>
 
 
