@@ -21,7 +21,7 @@ export default {
 
 
 <template>
-    <section class="selecionar-ingresientes">
+    <section class="selecionar-ingredientes">
         <h1 class="cabecalho titulo-ingredientes">
             Ingredientes
         </h1>
