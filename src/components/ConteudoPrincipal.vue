@@ -11,7 +11,7 @@ export default {
         return {
             ingredientes: [] as string[],
             conteudo: 'SelecionarIngredientes' as Pagina,
-            receitas: "Olá mundo"
+            // receitas: "Olá mundo"
         }
     },
     methods: {
@@ -21,8 +21,9 @@ export default {
         removerIngrediente(ingredienteParaRemover: string) {
             this.ingredientes = this.ingredientes.filter(iLista => ingredienteParaRemover !== iLista);
         },
-        navegar(pagina:Pagina){
-            this.conteudo= pagina;
+        navegar(pagina: Pagina) {
+
+            this.conteudo = pagina;
         }
     }
 }
@@ -34,16 +35,17 @@ export default {
 <template>
     <main class="conteudo-principal">
 
-        <SuaLista :ingredientes="ingredientes" />
+        <div v-if="conteudo === 'SelecionarIngredientes'">
 
-        <SelecionarIngredientes
-         v-if="conteudo === 'SelecionarIngredientes'"
-            @adicionar-ingrediente="adicionarIngrediente($event)" 
-            @remover-ingrediente="removerIngrediente($event)"
-            @buscar-receitas="navegar('MostrarReceitas')" 
-            />
+            <SuaLista :ingredientes="ingredientes" />
 
-        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" :receitas='receitas'  @buscar-receitas="navegar('SelecionarIngredientes')"   />
+            <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)"
+                @remover-ingrediente="removerIngrediente($event)" @buscar-receitas="navegar('MostrarReceitas')" />
+
+        </div>
+
+        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+            @buscar-ingredientes="navegar('SelecionarIngredientes')" />
 
 
     </main>
