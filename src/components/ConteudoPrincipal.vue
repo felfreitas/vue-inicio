@@ -11,17 +11,10 @@ export default {
     },
     methods: {
         adicionarIngrediente(ingredienteParaAdicionar: string) {
-            alert(ingredienteParaAdicionar)
             this.ingredientes.push(ingredienteParaAdicionar)
         },
         removerIngrediente(ingredienteParaRemover: string) {
-            var buscar = ingredienteParaRemover;
-            var indice = this.ingredientes.indexOf(buscar);
-            while (indice >= 0) {
-                this.ingredientes.splice(indice, 1);
-                indice = this.ingredientes.indexOf(buscar);
-            }
-            
+            this.ingredientes = this.ingredientes.filter(iLista => ingredienteParaRemover !== iLista);
         }
     }
 
@@ -41,6 +34,9 @@ export default {
             @remover-ingrediente="removerIngrediente($event)" />
 
     </main>
+    <footer>
+
+    </footer>
 </template>
 
 
