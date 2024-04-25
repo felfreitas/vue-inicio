@@ -2,10 +2,17 @@
 
 import { obterReceitas } from '../http/index';
 import type IReceita from "../interfaces/IReceita";
+
+import type { PropType } from 'vue';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 import CardReceita from './CardReceita.vue';
+import { itensDeLista1EstaoEmLista2 } from '../operacoes/listas';
+
 
 export default {
+    props:{
+        ingredientes: { type: Array as PropType<string[]>, required: true }
+    },
     data() {
         return {
             receitasEncontradas: [] as IReceita[]
@@ -13,10 +20,17 @@ export default {
     },
     async created() {
         const receitas = await obterReceitas();
-        // this.receitas = receitas.slice(0, 8);
-        this.receitasEncontradas = receitas;
+       
+        this.receitasEncontradas = receitas.filter((receita)=>{
+            //todos os ingrediente de uma receita devem estar inclusos na minha lista de ingredientes
+            //se sim, return true
+
+            const possivelFazerReceita = itensDeLista1EstaoEmLista2(receita.ingredientes, this.ingredientes);
+
+            return possivelFazerReceita
+
+        });
     },
-    
     components: { CardReceita, BotaoPrincipal },
     emits: ['buscarIngredientes']
 }

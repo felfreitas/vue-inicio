@@ -6,7 +6,6 @@ import MostrarReceitas from './MostrarReceitas.vue';
 type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 export default {
-    components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
     data() {
         return {
             ingredientes: [] as string[],
@@ -25,7 +24,8 @@ export default {
 
             this.conteudo = pagina;
         }
-    }
+    },
+    components: { SelecionarIngredientes, SuaLista, MostrarReceitas },
 }
 
 </script>
@@ -45,7 +45,7 @@ export default {
                 @adicionar-ingrediente="adicionarIngrediente($event)" @remover-ingrediente="removerIngrediente($event)"
                 @buscar-receitas="navegar('MostrarReceitas')" />
 
-            <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+            <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" :ingredientes="ingredientes"
                 @buscar-ingredientes="navegar('SelecionarIngredientes')" />
         </KeepAlive>
 
