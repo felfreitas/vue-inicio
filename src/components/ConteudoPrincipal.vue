@@ -38,7 +38,9 @@ export default {
 
 
         <SuaLista :ingredientes="ingredientes" v-if="conteudo === 'SelecionarIngredientes'" />
-        <KeepAlive>
+
+        <!-- serve para manter vivo o estado, preservar o estado guardando em cache -->
+        <KeepAlive include="SelecionarIngredientes">
             <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
                 @adicionar-ingrediente="adicionarIngrediente($event)" @remover-ingrediente="removerIngrediente($event)"
                 @buscar-receitas="navegar('MostrarReceitas')" />

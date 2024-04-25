@@ -6,6 +6,7 @@ import BotaoPrincipal from "./BotaoPrincipal.vue"
 
 
 export default {
+    name:'SelecionarIngredientes',
     components: { CardCategoria, BotaoPrincipal },
 
     //qlq propriedade dentro de data podemos chamar de 'estado' pois data é reativo. Ex.: assim que a promisse no created acontece, automaticamente atribui valores a categorias
