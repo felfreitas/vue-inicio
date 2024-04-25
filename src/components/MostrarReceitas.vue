@@ -16,9 +16,7 @@ export default {
         // this.receitas = receitas.slice(0, 8);
         this.receitasEncontradas = receitas;
     },
-    // props:{
-    //     // receitas: {type: String, required:true}
-    // },
+    
     components: { CardReceita, BotaoPrincipal },
     emits: ['buscarIngredientes']
 }

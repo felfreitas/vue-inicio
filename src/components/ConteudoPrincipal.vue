@@ -35,17 +35,17 @@ export default {
 <template>
     <main class="conteudo-principal">
 
-        <div v-if="conteudo === 'SelecionarIngredientes'">
 
-            <SuaLista :ingredientes="ingredientes" />
 
-            <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)"
-                @remover-ingrediente="removerIngrediente($event)" @buscar-receitas="navegar('MostrarReceitas')" />
+        <SuaLista :ingredientes="ingredientes" v-if="conteudo === 'SelecionarIngredientes'" />
+        <KeepAlive>
+            <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
+                @adicionar-ingrediente="adicionarIngrediente($event)" @remover-ingrediente="removerIngrediente($event)"
+                @buscar-receitas="navegar('MostrarReceitas')" />
 
-        </div>
-
-        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
-            @buscar-ingredientes="navegar('SelecionarIngredientes')" />
+            <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+                @buscar-ingredientes="navegar('SelecionarIngredientes')" />
+        </KeepAlive>
 
 
     </main>
